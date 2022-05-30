@@ -1,0 +1,71 @@
+$backgroundColor: #3A3845;
+$cardColor: #F7CCAC;
+$textColor: #DEA057;
+$boxShadowColor: #826F66;
+
+.movie-view {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px 0;
+    background-color: $backgroundColor; 
+       
+}
+
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 10px 5px 5px $boxShadowColor;
+    background-color: $cardColor;
+    max-width: 260px;
+    margin: 15px;
+    padding: 20px 3px;
+}
+
+mat-card-header {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.movies-title {
+    display: flex;
+    max-width: 210px;
+    justify-content: center;
+    text-align: center;
+    color: $backgroundColor;
+}
+
+.director-button {
+    padding: 5px;
+    margin: 0;
+    line-height: 0;
+    max-height: 20px;
+}
+
+img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+}
+.mat-icon-button {
+    position: absolute;
+    left: 25px;
+    top: 5px;
+}
+.genre-button {
+    background-color: $boxShadowColor;
+    position: relative;
+    left: 5px;
+}
+
+.synopsis-button {
+    background-color: $cardColor;
+    color: $backgroundColor;
+    margin: 10px;
+}

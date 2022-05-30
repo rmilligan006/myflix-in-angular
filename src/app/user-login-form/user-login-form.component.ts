@@ -5,6 +5,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
+
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -34,6 +35,7 @@ loginUser(): void {
      this.snackBar.open('You have logged in!', 'OK', {
         duration: 2000
      });
+     this.router.navigate(['movies']);
     }, (response) => {
       console.log(response);
       this.snackBar.open(response, 'OK', {

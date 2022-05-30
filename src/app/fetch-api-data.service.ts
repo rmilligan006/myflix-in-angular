@@ -52,54 +52,70 @@ export class FetchApiDataService {
     );
   }
 
-  //Get the director Info
-  getDirector(): Observable<any> {
+  getDirector(name: any): Observable<any> {
+    // Get Authorization token stored in local storage
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'directors/:Name', {
-      headers: new HttpHeaders({
-        Authorization: 'Bearer ' + token
+    return this.http
+      .get(apiUrl + `movies/director/${name}`, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        })
       })
-    }).pipe(
-      map(this.extractResponseData),
-      catchError(this.handleError)
-    );
+      .pipe(
+        map(this.extractResponseData),
+        catchError(this.handleError)
+      );
   }
 
   //Get User's profile
-  getUserProfile(username: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + `users/${username}`, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
-      .pipe(map(this.extractResponseData),
-      catchError(this.handleError));
-  }
-
-   //Get favorite movie list
-   getFavoriteMovies(username: any): Observable<any> {
-    const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + `users/${username}`, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
-      .pipe(map(this.extractResponseData),
-      catchError(this.handleError));
-  }
-  //Add a movite to user's favorites
-  addFavoriteMovies(MovieID: any): Observable<any> {
+  getUserProfile(): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
-    return this.http.post(apiUrl + `users/${username}/movies/${MovieID}`, null, {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + token,
-        }),
-      })
-      .pipe(map(this.extractResponseData),
-      catchError(this.handleError));
-  } 
+    return this.http
+    .get(apiUrl + `users/${username}`, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    })
+    .pipe(catchError(this.handleError));
+  }
+
+ /**
+   * calls API end-point to get a user's favorite movies
+   * @returns a an array of user's favorite movies in json format
+   */
+  getFavoriteMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    return this.http
+    .get(apiUrl + `users/${username}`, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    })
+    .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
+  /**
+   * calls API end-point to add a specific movie to the user's favorites
+   * @param MovieID {string}
+   * @returns the updated user's list of favorite movies
+   */
+  public addFavoriteMovies(MovieID: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('user');
+    console.log('MovieID:' + MovieID)
+    // console.log(apiUrl + `users/${username}/movies/${MovieID}`);
+    return this.http
+    .post(apiUrl + `users/${username}/movies/${MovieID}`, null, {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer ' + token,
+      }),
+    })
+    .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
+
+  
    //Edit user's profile info
    editUserProfile(userCredentials: object): Observable<any> {
     const token = localStorage.getItem('token');
