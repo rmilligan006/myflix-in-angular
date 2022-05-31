@@ -3,10 +3,13 @@ $cardColor: #F7CCAC;
 $textColor: #191919;
 $boxShadowColor: #826F66;
 
+
+
 .synopsis-dialog {
     background-color: $cardColor;
-  
-    box-shadow: none;
+    margin-top: 0px;
+    height: fit-content;
+    width: fit-content;
 }
 
 .synopsis-dialog-title {

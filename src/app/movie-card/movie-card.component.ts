@@ -15,7 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
-  favoriteMovies: any[] = [];
+  currentUser: any = null;
+  currentFavs: any = null;
   
   
   constructor(
@@ -26,6 +27,7 @@ export class MovieCardComponent implements OnInit {
 
 ngOnInit(): void {
   this.getMovies();
+  
   
 }
 
@@ -71,22 +73,21 @@ getMovies(): void {
     });
 
   }
-  getFavoriteMovies(): void {
-    this.fetchApiData.getFavoriteMovies().subscribe((resp: any) => {
-      this.favoriteMovies = resp;
-      console.log(this.favoriteMovies);
-      return this.favoriteMovies;
+  addToUserFavs(id: string, Title: string): void {
+    console.log(id);
+    const token = localStorage.getItem('token');
+    console.log(token)
+    this.fetchApiData.addFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`Successfully added ${Title} to favorite movies.`, 'OK', {
+        duration: 4000,
+        verticalPosition: 'top'
+      });
+      console.log(res)
+      this.ngOnInit();
     });
   }
 
-  /**
-   * checks if a movie is included in the user's list of favorite movies
-   * @param id 
-   * @returns true, if the movie is a favorite move, else false
-   */
-  isFav(id: string): boolean {
-    return this.favoriteMovies.includes(id)
-  }
+ 
 
   addToFavoriteMovies(id: string): void {
     console.log(id);
@@ -101,13 +102,17 @@ getMovies(): void {
    * @param id 
    * @function removeFavoriteMovie
    */
-  removeFromFavoriteMovies(id: string): void {
-    console.log(id);
-    this.fetchApiData.deleteFavoriteMovies(id).subscribe((result) => {
-      console.log(result);
+   deleteFavoriteMovies(id: string, Title: string): void {
+    console.log(id)
+    this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
+      this.snackBar.open(`${Title} has been removed from favorites`, 'OK', {
+        duration: 2000,
+        verticalPosition: 'top'
+      });
       this.ngOnInit();
-    })
+      console.log(res)
+    });
+  
   }
-
 }
 

@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   user: any = {};
   username: any = localStorage.getItem('user');
   movies: any[] = [];
-  favoriteMovies: any[] = [];
+  FavoriteMovies: any[] = [];
   displayElement: boolean = false
 
   constructor(
@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
+    this.getFavoriteMovies();
   }
 
   /**
@@ -51,11 +52,11 @@ export class ProfileComponent implements OnInit {
       this.movies = resp;
       this.movies.forEach((movie: any) => {
         if (this.user.FavoriteMovies.includes(movie._id)) {
-          this.favoriteMovies.push(movie);
+          this.FavoriteMovies.push(movie);
         }
       });
     });
-    console.log(this.favoriteMovies);
+    console.log(this.FavoriteMovies);
   }
 
   /**
