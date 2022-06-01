@@ -58,7 +58,11 @@
           </button>
         </mat-card-subtitle>
       </mat-card-header>
-      <img src="{movie.ImagePath}" alt="{{ movie.Title }}" />
+      <img
+        src="{{ movie.ImagePath }}"
+        alt="{{ movie.Title }}"
+        class="favorite-images"
+      />
       <mat-card-actions>
         <button
           class="genre-button"
