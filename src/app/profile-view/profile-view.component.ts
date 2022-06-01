@@ -39,24 +39,26 @@ export class ProfileComponent implements OnInit {
    * @returns object holding user information
    * @function getUser
    */
-  getUser(): void {
+   getUser(): void {
     this.fetchApiData.getUserProfile().subscribe((resp: any) => {
+      
       this.user = resp;
       console.log(this.user);
       return this.user;
-    })
+    });
+    this.getFavoriteMovies();
   }
 
   getFavoriteMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
       this.movies.forEach((movie: any) => {
-        if (this.user.FavoriteMovies.includes(movie._id)) {
+         {
           this.FavoriteMovies.push(movie);
         }
       });
     });
-    console.log(this.FavoriteMovies);
+    
   }
 
   /**

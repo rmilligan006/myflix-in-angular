@@ -20,7 +20,7 @@ $boxShadowColor: #826F66;
     color: $textColor;
 }
 
-::ng-deep .synopsis-custom>mat-dialog-container {
+::ng-deep .synopsis-custom> mat-dialog-container {
     background-color: $cardColor;
 }
 

@@ -49,8 +49,8 @@ h2 {
 }
 
 .favorite-movies-container {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -66,7 +66,8 @@ h2 {
     background-color: $cardColor;
     box-shadow: 10px 5px 5px $boxShadowColor;
     max-width: 280px;
-    width: 280px;
+    width: 50%;
+    height: 50%;
     margin: 15px;
     padding: 20px 3px;
 }

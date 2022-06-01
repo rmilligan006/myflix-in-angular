@@ -54,6 +54,7 @@ img {
     object-fit: cover;
 }
 .mat-icon-button {
+    background-color: $boxShadowColor;
     position: absolute;
     left: 25px;
     top: 5px;
@@ -68,4 +69,8 @@ img {
     background-color: $cardColor;
     color: $backgroundColor;
     margin: 10px;
+}
+
+.favorite-button {
+    color: $boxShadowColor;
 }
