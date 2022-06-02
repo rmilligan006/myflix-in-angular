@@ -48,7 +48,10 @@ export class ProfileComponent implements OnInit {
     });
     
   }
-
+  /**
+   * gets a user's FavoriteMovies
+   * @function getAllMovies
+   */
   getFavoriteMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -69,7 +72,12 @@ export class ProfileComponent implements OnInit {
       width: '300px'
     })
   }
-
+/**
+   * opens the dialog to display the SynopsisCarsComponent
+   * @param title {string}
+   * @param imagePath {any}
+   * @param description {string}
+   */
   openSynopsis(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisComponent, {
       data: {
@@ -82,6 +90,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  
   /**
    * opens the dialog to display the DirectorCardComponent
    * @param title {string}
@@ -125,6 +134,7 @@ export class ProfileComponent implements OnInit {
   /**
    * deletes the user profile, redirects to welcome screen
    * @function deleteUserProfile
+   * @return status for user has been removed
    */
   deleteProfile(): void {
     if (confirm('Are you sure you want to delete your account? This cannnot be undone.')) {
@@ -139,6 +149,13 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * use API end-point to remove a movie from user's favorites
+   * @function deleteFavoriteMovies
+   * @param MovieID 
+   * @param Title 
+   */
   deleteFavoriteMovies(MovieID: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(MovieID).subscribe((res: any) => {
       this.snackBar.open(`Successfully removed ${Title} from favorite movies.`, 'OK', {

@@ -31,6 +31,11 @@ ngOnInit(): void {
   
 }
 
+/**
+ * uses API end-point to get a list of all movies in json format
+ * @function getAllMovies
+ */
+
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -39,6 +44,13 @@ getMovies(): void {
     });
   }
  
+/**
+ * opens the dialog to display the information from DirectorCardComponent
+ * @param name {string}
+ * @param bio {string}
+ * @param birth {string}
+ */
+
   openDirectorDialog(name: string, bio: string, birth: Date): void {
     this.dialog.open(DirectorCardComponent, {
       data: {
@@ -50,6 +62,12 @@ getMovies(): void {
       width: '500px'
     });
 
+
+    /**
+     * opens the dialog to display the information from GenreCardComponent
+     * @param name{string}
+     * @param description{string}
+     */
   }
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
@@ -62,6 +80,12 @@ getMovies(): void {
     });
   }
 
+  /**
+   * opens the dialog to display the information from SynopsisCardComponent
+   * @param title 
+   * @param description 
+   */
+
   openSynopsisDialog(title: string, description: string): void {
     this.dialog.open(SynopsisComponent, {
       data: {
@@ -73,6 +97,14 @@ getMovies(): void {
     });
 
   }
+
+  /**
+   * use API end-point to add a movie to user's favorites
+   * @function addFavoriteMovies
+   * @param id {string}
+   * @param Title {string}
+   * @returns an array of the movie object in json format 
+   */
   addToUserFavs(id: string, Title: string): void {
     console.log(id);
     const token = localStorage.getItem('token');
@@ -97,10 +129,12 @@ getMovies(): void {
     })
   }
 
-  /**
-   * removes a movie from the list of favorite movies via an API call
-   * @param id 
-   * @function removeFavoriteMovie
+    /**
+   * user API end-point to remove a movie from user's favorites
+   * @function deleteFavoriteMovies
+   * @param id {string}
+   * @param Title {string}
+   * @returns updated user's data in json format
    */
    deleteFavoriteMovies(id: string, Title: string): void {
     console.log(id)

@@ -34,7 +34,7 @@ export class UserEditComponent implements OnInit {
   /**
    * gets the user's data
    * @function getUserProfile
-   * @returns the data of currently loggend in user
+   * @returns the data of currently logged in user
    */
   getUserProfile(): void {
     const user = localStorage.getItem('user');
